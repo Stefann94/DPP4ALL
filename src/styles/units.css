@@ -1,0 +1,42 @@
+/* Battery-unit screens. Chart colors: reference categorical palette (slots 1–5), selected per theme. */
+:root {
+  --viz-1: #2a78d6; --viz-2: #eb6834; --viz-3: #1baf7a; --viz-4: #eda100; --viz-5: #e87ba4;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --viz-1: #3987e5; --viz-2: #d95926; --viz-3: #199e70; --viz-4: #c98500; --viz-5: #d55181; }
+}
+:root[data-theme="dark"] { --viz-1: #3987e5; --viz-2: #d95926; --viz-3: #199e70; --viz-4: #c98500; --viz-5: #d55181; }
+
+.u-stackbar { display: flex; gap: 2px; height: 10px; border-radius: 4px; overflow: hidden; background: var(--surface-2); }
+.u-stackbar > span { display: block; height: 100%; min-width: 3px; }
+.u-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; color: var(--ink-2); }
+.u-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.u-legend b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; margin-left: 4px; }
+
+.u-bars { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px; align-items: end; height: 120px; padding-top: 18px; position: relative; }
+.u-bars .b { position: relative; height: 100%; display: flex; align-items: flex-end; cursor: default; }
+.u-bars .b > span { display: block; width: 100%; background: var(--viz-1); border-radius: 4px 4px 0 0; min-height: 2px; }
+.u-bars .b:hover > span { filter: brightness(1.12); }
+.u-bars .b em { position: absolute; left: 0; right: 0; text-align: center; font-style: normal; font-size: 11px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.u-bars-x { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px; font-size: 11px; color: var(--ink-3); text-align: center; border-top: 1px solid var(--line); padding-top: 4px; }
+
+.u-soh { display: inline-flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+.u-soh .m { width: 44px; height: 5px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--line); overflow: hidden; }
+.u-soh .m > span { display: block; height: 100%; background: var(--viz-1); }
+.u-soh.low .m > span { background: var(--warn); }
+.u-soh.bad .m > span { background: var(--bad); }
+
+.u-src { display: inline-flex; padding: 0 6px; border-radius: 4px; font-size: 10.5px; font-weight: 600; background: var(--surface-2); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+.u-src.model { border-style: dashed; }
+.u-src.bms { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+
+.u-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: start; }
+@media (max-width: 640px) { .u-head { grid-template-columns: minmax(0, 1fr); } }
+.u-kv { display: grid; grid-template-columns: minmax(140px, 42%) minmax(0, 1fr) auto; margin: 0; }
+.u-kv > * { padding: 8px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+.u-kv > :nth-child(-n+3) { border-top: 0; }
+.u-kv dt { color: var(--ink-2); padding-right: 10px; }
+.u-kv dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.u-kv .s { text-align: right; padding-left: 8px; }
+.u-pager { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-2); }
+.u-code { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; font-family: var(--m); font-size: 12px; white-space: pre; overflow-x: auto; margin: 0; }

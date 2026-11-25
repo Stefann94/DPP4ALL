@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "passport_id": "dpp_01JD8Q4V7M3X9K2T5R6B1N0ZCE",
+    "template": "battery-dpp",
+    "template_version": "0.1.0",
+    "profile": "battery_full",
+    "status": "published",
+    "version": 3,
+    "language": "ro",
+    "created_at": "2026-10-02T08:14:00Z",
+    "updated_at": "2026-11-20T13:41:22Z",
+    "published_at": "2026-11-20T13:41:22Z",
+    "digital_link": "https://dpp.voltaria.example/01/05949876543219",
+    "economic_operator_id": "org_voltaria"
+  },
+  "identificare": {
+    "product_name": "Voltaria HomeCell 10 — baterie de stocare rezidențială 10,24 kWh",
+    "gtin": "05949876543219",
+    "product_description": "Sistem de stocare a energiei pentru locuințe, LiFePO4, 51,2 V / 200 Ah, montaj pe perete, BMS integrat, compatibil cu invertoare hibride monofazate și trifazate.",
+    "markets_sold_into": ["EU", "DE", "IT", "PL"],
+    "battery_model_identifier": "VLT-HC10-LFP-51V200",
+    "battery_category": "industrial_stationary",
+    "battery_designed_use": "regular_use",
+    "manufacturing_place": "Cluj-Napoca, România",
+    "manufacturing_country": "RO",
+    "manufacturing_city": "Cluj-Napoca",
+    "manufacturing_date": "2027-03",
+    "battery_mass": 98.5,
+    "battery_mass_unit": "kg",
+    "warranty_period_of_the_battery": 10,
+    "warranty_period_unit": "years"
+  },
+  "operator": {
+    "manufacturer_name": "Voltaria Energy SRL",
+    "manufacturer_address": "Str. Fabricii nr. 12, 400632 Cluj-Napoca, România",
+    "manufacturer_country": "RO",
+    "manufacturer_email": "conformitate@voltaria.example",
+    "manufacturer_website": "https://voltaria.example",
+    "eori_number": "RO40123456",
+    "eu_responsible_person": "Voltaria Energy SRL (producător stabilit în UE)",
+    "placed_on_market_by": "manufacturer"
+  },
+  "etichete_conformitate": {
+    "separate_collection_symbol": true,
+    "cadmium_lead_symbol": false,
+    "cadmium_symbol": false,
+    "lead_symbol": false,
+    "extinguishing_agent": "Apă în cantitate mare pentru răcire; extinctor cu pulbere ABC sau CO2 pentru incendii incipiente. Nu deschideți carcasa.",
+    "meaning_of_labels_and_symbols": "Pubela tăiată: bateria nu se aruncă la gunoiul menajer, se predă la un punct de colectare. CE: conform cu legislația UE. Marcajul de chimie LFP: litiu-fier-fosfat. Codul QR: acces la pașaportul digital.",
+    "eu_declaration_of_conformity_url": "https://dpp.voltaria.example/docs/doc-ue-hc10-v3.pdf",
+    "test_reports_url": "https://dpp.voltaria.example/restricted/test-reports/hc10-iec62619-iec62620.pdf",
+    "substances_of_concern": ["Hexafluorofosfat de litiu (LiPF6) în electrolit", "Carbonat de etilenă (EC)"],
+    "compliance_standards": ["reach"]
+  },
+  "amprenta_carbon": {
+    "carbon_footprint_basis": "pef",
+    "carbon_footprint_per_kwh": 62.4,
+    "cf_raw_material_stage": 38.1,
+    "cf_production_stage": 19.6,
+    "cf_distribution_stage": 1.9,
+    "cf_end_of_life_stage": 2.8,
+    "cf_performance_class": "B",
+    "carbon_footprint_study_url": "https://dpp.voltaria.example/docs/studiu-amprenta-carbon-hc10-2027.pdf"
+  },
+  "due_diligence": {
+    "due_diligence_report_url": "https://voltaria.example/sustenabilitate/raport-due-diligence-2026.pdf"
+  },
+  "materiale": {
+    "battery_chemistry": "Litiu-ion LFP (LiFePO4) — catod LiFePO4, anod grafit",
+    "battery_chemistry_codes": ["lithiumIonLFP"],
+    "critical_raw_materials": "Litiu, grafit natural, cupru, bauxită/aluminiu, fosfor",
+    "critical_raw_material_codes": ["lithium", "graphite", "copper", "bauxiteAluminaAluminium", "phosphorus"],
+    "cathode_anode_electrolyte_materials": [
+      "Catod: LiFePO4 92%, negru de fum 3%, liant PVDF 5%, colector folie de aluminiu",
+      "Anod: grafit natural sferoidal 95%, CMC/SBR 3%, negru de fum 2%, colector folie de cupru",
+      "Electrolit: LiPF6 1,1 M în EC/DMC/EMC (3:4:3), aditiv VC 1%",
+      "Separator: polietilenă cu acoperire ceramică Al2O3"
+    ],
+    "hazardous_substances": ["LiPF6 (H302, H314, H372)", "Carbonat de dimetil (H225)"],
+    "impact_of_substances": "Electrolitul este inflamabil și coroziv; în caz de deteriorare poate elibera HF. Nu conține mercur, cadmiu sau plumb peste pragurile legale. Eliminarea necontrolată poate contamina solul și apa."
+  },
+  "circularitate": {
+    "dismantling_manuals_url": "https://dpp.voltaria.example/restricted/manual-demontare-hc10.pdf",
+    "part_numbers_url": "https://dpp.voltaria.example/restricted/lista-piese-hc10.pdf",
+    "spare_parts_sources_url": "https://voltaria.example/service/piese-schimb",
+    "safety_measures_url": "https://dpp.voltaria.example/restricted/masuri-siguranta-hc10.pdf",
+    "pre_consumer_recycled_nickel_share": 0,
+    "pre_consumer_recycled_cobalt_share": 0,
+    "pre_consumer_recycled_lithium_share": 4.5,
+    "post_consumer_recycled_nickel_share": 0,
+    "post_consumer_recycled_cobalt_share": 0,
+    "post_consumer_recycled_lithium_share": 2.0,
+    "recycled_lead_share": 0,
+    "renewable_content_share": 3.2,
+    "end_user_waste_prevention_url": "https://voltaria.example/ghid/prelungire-viata-baterie",
+    "end_user_separate_collection_url": "https://voltaria.example/ghid/colectare-separata",
+    "collection_and_second_life_url": "https://voltaria.example/retur",
+    "waste_battery_safety_instructions": "Nu demontați, nu perforați, nu expuneți la temperaturi peste 60 °C. Izolați bornele cu bandă înainte de transport. Contactați Voltaria pentru preluare gratuită prin schema de responsabilitate extinsă a producătorului."
+  },
+  "performanta": {
+    "rated_capacity": 200,
+    "rated_capacity_unit": "Ah",
+    "capacity_fade": 20,
+    "minimum_voltage": 40.0,
+    "maximum_voltage": 57.6,
+    "nominal_voltage": 51.2,
+    "voltage_temperature_lower": -10,
+    "voltage_temperature_upper": 50,
+    "original_power_capability": 10240,
+    "power_fade": 20,
+    "maximum_permitted_battery_power": 10240,
+    "initial_round_trip_energy_efficiency": 95.0,
+    "round_trip_energy_efficiency_at_50_of_cycle_life": 92.5,
+    "energy_round_trip_efficiency_fade": 2.5,
+    "initial_self_discharge_rate": 2.5,
+    "initial_self_discharge_rate_per_year": 30,
+    "initial_internal_resistance_pack": 25,
+    "initial_internal_resistance_pack_unit": "mOhm",
+    "initial_internal_resistance_of_battery_cell": 0.25,
+    "initial_internal_resistance_cell_unit": "mOhm",
+    "internal_resistance_increase": 50,
+    "expected_lifetime_in_calendar_years": 15,
+    "expected_lifetime_number_of_charge_discharge_cycles": 6000,
+    "cycle_life_reference_test": "IEC 62620:2014, 25 °C, 0,5C/0,5C, 90% DoD, până la 80% SoH",
+    "c_rate_of_relevant_cycle_life_test": 0.5,
+    "temperature_range_idle_state_lower_boundary": -20,
+    "temperature_range_idle_state_upper_boundary": 45,
+    "temperature_range_idle_state_reference_test": "IEC 62619:2022, stocare la 50% SoC",
+    "model_health_declaration": "declared"
+  },
+  "documente": [
+    { "type": "conformity_declaration", "title": "Declarația UE de conformitate HC10 v3", "url": "https://dpp.voltaria.example/docs/doc-ue-hc10-v3.pdf", "access_tier": "public", "mime_type": "application/pdf", "sha256": "9f2c4e1a7b3d5f60812a4c9e0d7b6f5a3c2e1d0f9a8b7c6d5e4f3a2b1c0d9e8f", "uploaded_at": "2026-11-18T10:02:00Z" },
+    { "type": "test_report", "title": "Raport test IEC 62619 / IEC 62620", "url": "https://dpp.voltaria.example/restricted/test-reports/hc10-iec62619-iec62620.pdf", "access_tier": "authority", "mime_type": "application/pdf", "uploaded_at": "2026-11-18T10:05:00Z" },
+    { "type": "manual", "title": "Manual de demontare", "url": "https://dpp.voltaria.example/restricted/manual-demontare-hc10.pdf", "access_tier": "restricted", "mime_type": "application/pdf" },
+    { "type": "carbon_footprint_study", "title": "Studiu amprentă de carbon (PEF) 2027", "url": "https://dpp.voltaria.example/docs/studiu-amprenta-carbon-hc10-2027.pdf", "access_tier": "public", "mime_type": "application/pdf" },
+    { "type": "image", "title": "Fotografie produs", "url": "https://dpp.voltaria.example/media/hc10-front.webp", "access_tier": "public", "mime_type": "image/webp" }
+  ],
+  "unitati": [
+    {
+      "serial_number": "HC10-2703-000187",
+      "batch_number": "L2703-04",
+      "unit_manufacturing_date": "2027-03-11",
+      "digital_link": "https://dpp.voltaria.example/01/05949876543219/21/HC10-2703-000187",
+      "status": "original",
+      "remaining_capacity": 196.4,
+      "self_discharge_rate": 2.4,
+      "charge_discharge_cycles": 212,
+      "state_of_charge": 64,
+      "temperature": 31,
+      "negative_events": "",
+      "readings": [
+        { "field": "remaining_capacity", "value": 199.6, "observed_on": "2027-03-12", "source": "fabrică — test final EOL", "recorded_by": "qa@voltaria.example", "recorded_at": "2027-03-12T09:30:00Z" },
+        { "field": "remaining_capacity", "value": 196.4, "observed_on": "2027-11-01", "source": "BMS — telemetrie", "recorded_by": "api:bms-sync", "recorded_at": "2027-11-01T03:00:00Z" },
+        { "field": "charge_discharge_cycles", "value": 212, "observed_on": "2027-11-01", "source": "BMS — telemetrie", "recorded_by": "api:bms-sync", "recorded_at": "2027-11-01T03:00:00Z" }
+      ]
+    },
+    {
+      "serial_number": "HC10-2703-000188",
+      "batch_number": "L2703-04",
+      "unit_manufacturing_date": "2027-03-11",
+      "digital_link": "https://dpp.voltaria.example/01/05949876543219/21/HC10-2703-000188",
+      "status": "repurposed",
+      "remaining_capacity": 171.0,
+      "self_discharge_rate": 3.1,
+      "charge_discharge_cycles": 2140,
+      "negative_events": "2028-07-14: supratemperatură 68 °C detectată de BMS, oprire automată; fără deteriorare vizibilă.",
+      "readings": [
+        { "field": "status", "value": "repurposed", "observed_on": "2030-02-03", "source": "Operator second-life — EnerReuse SRL", "recorded_by": "partner:enerreuse", "recorded_at": "2030-02-03T12:00:00Z" }
+      ]
+    }
+  ]
+}

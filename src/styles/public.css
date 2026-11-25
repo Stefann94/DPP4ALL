@@ -1,0 +1,45 @@
+/* Public passport page (no app shell). Mobile-first; brand color via --brand on .pub. */
+.pub { min-height: 100%; background: var(--bg); color: var(--ink); --brand: var(--accent); }
+.pub-top { height: 4px; background: var(--brand); }
+.pub-wrap { max-width: 760px; margin: 0 auto; padding: 16px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px)); display: grid; gap: 14px; }
+.pub-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.pub-logo { display: flex; align-items: center; gap: 10px; min-width: 0; font-family: var(--fh); font-weight: 600; }
+.pub-logo img { height: 30px; width: auto; max-width: 160px; object-fit: contain; }
+.pub-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+.pub-hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; padding: 20px; align-items: start; }
+@media (max-width: 560px) { .pub-hero { grid-template-columns: minmax(0, 1fr); } .pub-hero .pub-qr { justify-self: start; } }
+.pub-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--brand); }
+.pub-hero h1 { font-size: 24px; margin: 4px 0 10px; overflow-wrap: anywhere; }
+.pub-meta { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; margin: 0; font-size: 13px; }
+.pub-meta dt { color: var(--ink-3); }
+.pub-meta dd { margin: 0; overflow-wrap: anywhere; }
+.pub-qr { display: grid; gap: 6px; justify-items: center; }
+.pub-qr .cap { font-family: var(--m); font-size: 10.5px; color: var(--ink-3); max-width: 170px; text-align: center; overflow-wrap: anywhere; }
+.pub-sec { padding: 16px 20px; border-top: 1px solid var(--line); }
+.pub-sec h2 { font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.pub-kv { display: grid; grid-template-columns: minmax(130px, 42%) minmax(0, 1fr); margin: 0; }
+.pub-kv dt, .pub-kv dd { margin: 0; padding: 7px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+.pub-kv > :nth-child(1), .pub-kv > :nth-child(2) { border-top: 0; }
+.pub-kv dt { color: var(--ink-2); padding-right: 12px; display: flex; gap: 6px; flex-wrap: wrap; align-items: baseline; }
+.pub-kv dd { overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.pub-kv dd a { color: var(--brand); }
+@media (max-width: 460px) { .pub-kv { grid-template-columns: minmax(0, 1fr); } .pub-kv dd { border-top: 0; padding-top: 0; } }
+.pub-held { color: var(--ink-3); font-style: italic; }
+.pub-unit { background: color-mix(in srgb, var(--brand) 7%, var(--surface)); }
+.pub-banner { display: flex; gap: 10px; align-items: center; padding: 10px 14px; border-radius: var(--r); font-size: 13px; flex-wrap: wrap; }
+.pub-banner.grant { background: var(--tier-restricted-soft); color: var(--ink); }
+.pub-banner.preview { background: var(--warn-soft); color: var(--ink); }
+.pub-banner.note { background: var(--surface-2); border: 1px solid var(--line); }
+.pub-banner svg { width: 16px; height: 16px; flex: none; }
+.pub-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: var(--r); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font-weight: 500; cursor: pointer; text-decoration: none; font-size: 13px; }
+.pub-btn:hover { border-color: var(--ink-3); text-decoration: none; }
+.pub-btn.brand { background: var(--brand); border-color: var(--brand); color: #fff; }
+.pub-btn svg { width: 15px; height: 15px; }
+.pub-foot { text-align: center; font-size: 12px; color: var(--ink-3); display: grid; gap: 4px; padding-top: 8px; }
+.pub-json { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; font-family: var(--m); font-size: 11.5px; white-space: pre; overflow: auto; max-height: 420px; margin: 0; }
+.pub-na { min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; background: var(--bg); text-align: center; }
+.pub-na .box { max-width: 380px; display: grid; gap: 10px; justify-items: center; color: var(--ink-2); }
+.pub-na .box b { color: var(--ink); font-size: 17px; font-family: var(--fh); }
+.pub-na svg { width: 36px; height: 36px; color: var(--ink-3); }
+.pub-syms { display: flex; gap: 8px; flex-wrap: wrap; }
+.pub-syms span { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 99px; font-size: 12.5px; }

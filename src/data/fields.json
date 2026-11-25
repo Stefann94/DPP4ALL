@@ -1,0 +1,2663 @@
+{
+  "template": "battery-dpp",
+  "template_version": "0.1.0",
+  "regulation": "Regulation (EU) 2023/1542 (Batteries), Art. 77-78 + Annex XIII",
+  "battery_passport_mandatory_from": "2027-02-18",
+  "profiles": {
+    "battery_full": "Battery passport (Art. 77): EV, LMT, industrial > 2 kWh",
+    "battery_basic": "Battery information via QR (Art. 13(6)): portable, SLI, industrial ≤ 2 kWh"
+  },
+  "category_rules": {
+    "rule": "Check in this order; the first match decides. Units that work as one integrated system with common components, such as a shared battery management system, count as one battery, so add up their capacity. Cells or modules sold ready for end use count as the kind they most resemble, and the strictest kind if several fit.",
+    "kinds": [
+      {
+        "value": "ev",
+        "category": "battery",
+        "condition": "A drive battery for a hybrid or electric road vehicle of category M, N or O, or a drive battery weighing over 25 kg for a vehicle of category L."
+      },
+      {
+        "value": "lmt",
+        "category": "battery",
+        "condition": "A drive battery for a wheeled vehicle moved by a motor alone or by a motor and human power together, such as pedalling or pushing, a category L vehicle included, sealed and 25 kg or less, and not an EV battery. Not a battery for a boat, which is not wheeled, or for a toy vehicle, which is portable, and not one for an industrial machine such as a pallet truck, which takes the capacity rule."
+      },
+      {
+        "value": "sli",
+        "category": "battery-information",
+        "condition": "Made to power the starter, lighting or ignition system of a vehicle, boat or machine; it may also serve auxiliary or backup uses there. A camper's or boat's house battery made only for living-area power is not one, and takes the capacity rule. The 12 V battery of a hybrid or electric car is one, not a drive battery."
+      },
+      {
+        "value": "portable",
+        "category": "battery-information",
+        "condition": "Sealed, 5 kg or less, not designed specifically for industrial use, and not an EV, LMT or SLI battery."
+      },
+      {
+        "value": "industrial_up_to_2kwh",
+        "category": "battery-information",
+        "condition": "Any other battery of 2 kWh or less."
+      },
+      {
+        "value": "industrial_stationary",
+        "category": "battery",
+        "condition": "Any other battery over 2 kWh with built-in storage, made to store energy and deliver it to the grid or to users."
+      },
+      {
+        "value": "industrial_other",
+        "category": "battery",
+        "condition": "Any other battery over 2 kWh."
+      }
+    ]
+  },
+  "access_tiers": {
+    "public": "Oricine scanează QR-ul (Annex XIII(1))",
+    "restricted": "Persoane cu interes legitim: reparatori, re-fabricanți, reciclatori, operatori second-life (Annex XIII(2), (4))",
+    "authority": "Autorități de supraveghere a pieței și Comisia Europeană (Annex XIII(3))"
+  },
+  "sections": [
+    {
+      "id": "identificare",
+      "label_ro": "Identificare produs și baterie",
+      "regulation": "Annex XIII(1)(a), Annex VI Part A"
+    },
+    {
+      "id": "operator",
+      "label_ro": "Producător / operator economic",
+      "regulation": "Art. 38(7), Art. 4, Art. 41"
+    },
+    {
+      "id": "etichete_conformitate",
+      "label_ro": "Etichete, simboluri și conformitate",
+      "regulation": "Annex XIII(1)(q)(r)(s), Annex XIII(3)"
+    },
+    {
+      "id": "amprenta_carbon",
+      "label_ro": "Amprenta de carbon",
+      "regulation": "Annex XIII(1)(c), Art. 7"
+    },
+    {
+      "id": "due_diligence",
+      "label_ro": "Due diligence lanț de aprovizionare",
+      "regulation": "Annex XIII(1)(d), Art. 52"
+    },
+    {
+      "id": "materiale",
+      "label_ro": "Materiale și compoziție",
+      "regulation": "Annex XIII(1)(b), Annex XIII(2)(a)"
+    },
+    {
+      "id": "circularitate",
+      "label_ro": "Circularitate și eficiența resurselor",
+      "regulation": "Annex XIII(1)(e)(f)(s), Annex XIII(2)(b-d)"
+    },
+    {
+      "id": "performanta",
+      "label_ro": "Performanță și durabilitate (model)",
+      "regulation": "Annex XIII(1)(g-p), Annex XIII(4)(a)"
+    },
+    {
+      "id": "unitate",
+      "label_ro": "Date per baterie individuală (unitate)",
+      "regulation": "Annex XIII(4)(b-d), Art. 77(2)(c)"
+    }
+  ],
+  "fields": [
+    {
+      "name": "product_name",
+      "section": "identificare",
+      "type": "text",
+      "label": "Product Name",
+      "label_ro": "Denumire comercială",
+      "description": "Commercial name of the product",
+      "hint": "Shown as the headline on the public passport and in search.",
+      "requirement": "required",
+      "access_tier": "public",
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "gtin",
+      "section": "identificare",
+      "type": "text",
+      "label": "GTIN",
+      "label_ro": "GTIN (cod EAN)",
+      "description": "Already have a barcode? The number under it is your GTIN.",
+      "hint": "The GTIN links the digital passport to the physical barcode on the label.",
+      "placeholder": "05060123456781",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "GS1 / GTIN GS1 General Specifications",
+        "Art. 77(3)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "requirement_basic": "optional"
+    },
+    {
+      "name": "serial_number",
+      "section": "unitate",
+      "type": "text",
+      "label": "Serial Number",
+      "label_ro": "Număr de serie (GS1 AI 21)",
+      "description": "Item-level serial number for unit-specific identification",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Art. 38(6)"
+      ],
+      "profiles": [
+        "battery_full"
+      ],
+      "per_battery": true
+    },
+    {
+      "name": "product_description",
+      "section": "identificare",
+      "type": "text",
+      "label": "Product Description",
+      "label_ro": "Descriere produs",
+      "description": "A clear description of the product and its intended use",
+      "requirement": "optional",
+      "access_tier": "public",
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "markets_sold_into",
+      "section": "identificare",
+      "type": "multiselect",
+      "label": "Markets sold into",
+      "label_ro": "Piețe de comercializare",
+      "description": "Where this product is placed on the market. Determines which market-specific rules (e.g. France AGEC) apply. Select France (FR) specifically if you sell there.",
+      "hint": "Used only to tailor compliance guidance — never shown on the public passport.",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "options": [
+        {
+          "value": "EU",
+          "label": "European Union / EEA (general)"
+        },
+        {
+          "value": "FR",
+          "label": "France"
+        },
+        {
+          "value": "DE",
+          "label": "Germany"
+        },
+        {
+          "value": "IT",
+          "label": "Italy"
+        },
+        {
+          "value": "ES",
+          "label": "Spain"
+        },
+        {
+          "value": "NL",
+          "label": "Netherlands"
+        },
+        {
+          "value": "BE",
+          "label": "Belgium"
+        },
+        {
+          "value": "PL",
+          "label": "Poland"
+        },
+        {
+          "value": "UK",
+          "label": "United Kingdom"
+        },
+        {
+          "value": "US",
+          "label": "United States"
+        },
+        {
+          "value": "OTHER",
+          "label": "Other / rest of world"
+        }
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "manufacturer_name",
+      "section": "operator",
+      "type": "text",
+      "label": "Manufacturer Name",
+      "label_ro": "Nume producător",
+      "description": "The manufacturer's name, registered trade name or registered trade mark.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Art. 38(7)",
+        "Annex XIII(1)(a) -> Annex VI Part A(1)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "manufacturer_address",
+      "section": "operator",
+      "type": "text",
+      "label": "Manufacturer Address",
+      "label_ro": "Adresă producător",
+      "description": "The manufacturer's postal address. Name a single contact point.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Art. 38(7)",
+        "Annex XIII(1)(a) -> Annex VI Part A(1)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "manufacturer_country",
+      "section": "operator",
+      "type": "text",
+      "label": "Manufacturer Country",
+      "label_ro": "Țara producătorului (ISO 3166)",
+      "description": "Select the manufacturer's country.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Art. 38(7)",
+        "Annex XIII(1)(a) -> Annex VI Part A(1)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "manufacturer_email",
+      "section": "operator",
+      "type": "text",
+      "label": "Manufacturer Email",
+      "label_ro": "E-mail producător",
+      "description": "The manufacturer's email address, if available.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "regulation": [
+        "Art. 38(7)",
+        "Annex XIII(1)(a) -> Annex VI Part A(1)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "manufacturer_website",
+      "section": "operator",
+      "type": "url",
+      "label": "Manufacturer Website",
+      "label_ro": "Website producător",
+      "description": "The manufacturer's web address, if available.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "eori_number",
+      "section": "operator",
+      "type": "text",
+      "label": "EORI Number",
+      "label_ro": "Număr EORI",
+      "description": "Economic Operators Registration and Identification number for EU customs",
+      "placeholder": "DE1234567890",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "eu_responsible_person",
+      "section": "operator",
+      "type": "text",
+      "label": "EU Responsible Person",
+      "label_ro": "Persoana responsabilă în UE",
+      "description": "Name and contact of the EU-based responsible person — needed to sell in the EU when the manufacturer is outside it, unless you name an EU importer instead",
+      "requirement": "recommended",
+      "access_tier": "public",
+      "regulation": [
+        "Market Surveillance Reg (EU) 2019/1020 Art. 4"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "placed_on_market_by",
+      "section": "operator",
+      "type": "select",
+      "label": "Who places this battery on the EU market?",
+      "label_ro": "Cine introduce bateria pe piața UE?",
+      "description": "The company that places the battery on the EU market is responsible for keeping its passport accurate and up to date.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "manufacturer",
+          "label": "The manufacturer named in this passport"
+        },
+        {
+          "value": "importer",
+          "label": "An importer established in the EU"
+        }
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "eu_importer",
+      "section": "operator",
+      "type": "text",
+      "label": "EU Importer",
+      "label_ro": "Importator UE",
+      "description": "When a company other than you places the battery on the EU market, enter that importer here. Give its name, registered trade name or registered trade mark, and its postal address with a single contact point. Add its web and email address if available.",
+      "hint": "The importer is a distinct economic operator from the manufacturer — the EU-established business that brings the product into the Union.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "regulation": [
+        "Art. 41(3)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "carbon_footprint_basis",
+      "section": "amprenta_carbon",
+      "type": "select",
+      "label": "Carbon Footprint Basis",
+      "label_ro": "Metodologie amprentă de carbon",
+      "description": "How the carbon footprint was calculated.",
+      "hint": "This records the calculation method. Keep supporting evidence for the footprint; selecting a method does not substantiate the result.",
+      "requirement": "recommended",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "options": [
+        {
+          "value": "iso_14067",
+          "label": "ISO 14067 (product carbon footprint)"
+        },
+        {
+          "value": "pef",
+          "label": "EU PEF / PEFCR"
+        },
+        {
+          "value": "ghg_protocol",
+          "label": "GHG Protocol Product Standard"
+        },
+        {
+          "value": "iso_14040_44",
+          "label": "ISO 14040/44 LCA"
+        },
+        {
+          "value": "supplier_data",
+          "label": "Supplier-provided / EPD data"
+        },
+        {
+          "value": "estimate",
+          "label": "Internal estimate"
+        }
+      ],
+      "regulation": [
+        "UCPD (Dir 2005/29/EC) Art. 12"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "substances_of_concern",
+      "section": "etichete_conformitate",
+      "type": "array",
+      "item_type": "string",
+      "label": "Substances of Concern",
+      "label_ro": "Substanțe care prezintă motive de îngrijorare (SVHC)",
+      "description": "List of substances of concern present above threshold concentrations, or \"none declared\"",
+      "requirement": "recommended",
+      "access_tier": "public",
+      "regulation": [
+        "REACH (Reg (EC) 1907/2006) Art. 33",
+        "SCIP / WFD (Dir 2008/98/EC) Art. 9(1)(i)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "compliance_standards",
+      "section": "etichete_conformitate",
+      "type": "multiselect",
+      "label": "Compliance Standards",
+      "label_ro": "Standarde de conformitate",
+      "description": "Kept for values already entered; not asked of batteries.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "reach",
+          "label": "REACH (EC 1907/2006)"
+        },
+        {
+          "value": "eu_ecolabel",
+          "label": "EU Ecolabel"
+        }
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "battery_model_identifier",
+      "section": "identificare",
+      "type": "text",
+      "label": "Battery model identifier",
+      "label_ro": "Identificator model baterie",
+      "description": "Enter the model name or number you use to identify this battery.",
+      "placeholder": "BP-48100-LFP",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(a) -> Annex VI Part A(2)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "requirement_basic": "optional"
+    },
+    {
+      "name": "manufacturing_place",
+      "section": "identificare",
+      "type": "text",
+      "label": "Manufacturing place",
+      "label_ro": "Locul fabricației",
+      "description": "Enter the city and country where the battery is manufactured.",
+      "placeholder": "Shenzhen, China",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(a) -> Annex VI Part A(3)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "requirement_basic": "optional"
+    },
+    {
+      "name": "manufacturing_country",
+      "section": "identificare",
+      "type": "text",
+      "label": "Manufacturing country",
+      "label_ro": "Țara fabricației",
+      "description": "Pick the country where the battery is manufactured.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "manufacturing_city",
+      "section": "identificare",
+      "type": "text",
+      "label": "Manufacturing city",
+      "label_ro": "Orașul fabricației",
+      "description": "Enter the city where the battery is manufactured.",
+      "placeholder": "Shenzhen",
+      "requirement": "optional",
+      "access_tier": "public",
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "manufacturing_date",
+      "section": "identificare",
+      "type": "month",
+      "label": "Manufacturing date",
+      "label_ro": "Data fabricației (lună/an)",
+      "description": "Date on which this item or batch was manufactured",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(a) -> Annex VI Part A(4)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "warranty_period_of_the_battery",
+      "section": "identificare",
+      "type": "number",
+      "label": "Warranty period of the battery",
+      "label_ro": "Perioada de garanție",
+      "description": "Enter how long your commercial warranty lasts as a length of time, not an end date. Leave it blank if you don't offer one.",
+      "placeholder": "24",
+      "requirement": "optional",
+      "access_tier": "public",
+      "unit": "months",
+      "unit_field": "warranty_period_unit",
+      "min": 1,
+      "regulation": [
+        "Annex XIII(1)(m)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "warranty_period_unit",
+      "section": "identificare",
+      "type": "select",
+      "label": "Warranty period unit",
+      "label_ro": "Unitate garanție",
+      "description": "Pick whether your warranty length is in months or years.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "months",
+          "label": "months"
+        },
+        {
+          "value": "years",
+          "label": "years"
+        }
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "battery_category",
+      "section": "identificare",
+      "type": "select",
+      "label": "Battery category",
+      "label_ro": "Categoria bateriei",
+      "description": "Pick the kind of battery, as the EU Battery Regulation defines it.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(a) -> Annex VI Part A(2)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "options_by_profile": {
+        "battery_full": [
+          {
+            "value": "industrial_stationary",
+            "label": "Stationary battery energy storage system (>2 kWh)"
+          },
+          {
+            "value": "industrial_other",
+            "label": "Other industrial battery (>2 kWh)"
+          },
+          {
+            "value": "ev",
+            "label": "Electric-vehicle (EV) battery"
+          },
+          {
+            "value": "lmt",
+            "label": "Light means of transport (LMT) battery"
+          }
+        ],
+        "battery_basic": [
+          {
+            "value": "portable",
+            "label": "Portable battery"
+          },
+          {
+            "value": "sli",
+            "label": "Starter battery (SLI)"
+          },
+          {
+            "value": "industrial_up_to_2kwh",
+            "label": "Industrial battery of 2 kWh or less"
+          }
+        ]
+      }
+    },
+    {
+      "name": "battery_designed_use",
+      "section": "identificare",
+      "type": "select",
+      "label": "How is this battery designed to be used?",
+      "label_ro": "Mod de utilizare proiectat",
+      "description": "Your answer decides which lifetime and efficiency values this passport must give from 18 February 2027. Without an answer, the passport must give all of them.",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "options": [
+        {
+          "value": "regular_use",
+          "label": "Charged and discharged in regular use"
+        },
+        {
+          "value": "backup_only",
+          "label": "Rechargeable, used only for back-up power"
+        },
+        {
+          "value": "not_rechargeable",
+          "label": "Not designed to be recharged"
+        }
+      ],
+      "regulation": [
+        "Art. 3(1)(7); Annex IV Part A(5); Art. 77(2)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "battery_mass",
+      "section": "identificare",
+      "type": "number",
+      "label": "Battery mass",
+      "label_ro": "Masa bateriei",
+      "description": "Enter how much the whole battery weighs.",
+      "hint": "Listed as weight or mass on your supplier's datasheet.",
+      "placeholder": "12.5",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "kg",
+      "unit_field": "battery_mass_unit",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(a) -> Annex VI Part A(5)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "requirement_basic": "optional"
+    },
+    {
+      "name": "battery_mass_unit",
+      "section": "identificare",
+      "type": "select",
+      "label": "Battery mass unit",
+      "label_ro": "Unitate masă",
+      "description": "Pick grams for small or LMT batteries, kilograms for larger ones.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "kg",
+          "label": "kg"
+        },
+        {
+          "value": "g",
+          "label": "g"
+        }
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "separate_collection_symbol",
+      "section": "etichete_conformitate",
+      "type": "pictogram",
+      "label": "Separate collection symbol",
+      "label_ro": "Simbol colectare separată (pubelă tăiată)",
+      "description": "Leave this on — the crossed-out wheeled-bin symbol applies to every battery and we add it for you, so you don't need a file or link.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(q) -> Art. 13(4)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "cadmium_lead_symbol",
+      "section": "etichete_conformitate",
+      "type": "pictogram",
+      "label": "Symbols for cadmium and lead",
+      "label_ro": "Simboluri Cd și Pb",
+      "description": "Tick this if the manufacturer confirms that this battery contains more than 0.002% cadmium or more than 0.004% lead by weight.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(q) -> Art. 13(5)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "cadmium_symbol",
+      "section": "etichete_conformitate",
+      "type": "pictogram",
+      "label": "Symbol for cadmium",
+      "label_ro": "Simbol cadmiu (Cd)",
+      "description": "Tick this if the manufacturer confirms more than 0.002% cadmium by weight.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(q) -> Art. 13(5)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "lead_symbol",
+      "section": "etichete_conformitate",
+      "type": "pictogram",
+      "label": "Symbol for lead",
+      "label_ro": "Simbol plumb (Pb)",
+      "description": "Tick this if the manufacturer confirms more than 0.004% lead by weight.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(q) -> Art. 13(5)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "extinguishing_agent",
+      "section": "etichete_conformitate",
+      "type": "text",
+      "label": "Extinguishing agent",
+      "label_ro": "Agent de stingere utilizabil",
+      "description": "Enter the usable extinguishing agent specified in the manufacturer's fire-safety documentation for this battery model.",
+      "hint": "Use the battery's fire-safety instructions. Ask the manufacturer to confirm the applicable agent if you only have a cell safety data sheet.",
+      "placeholder": "Agent specified by the manufacturer",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(a) -> Annex VI Part A(9)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "requirement_basic": "optional"
+    },
+    {
+      "name": "meaning_of_labels_and_symbols",
+      "section": "etichete_conformitate",
+      "type": "text",
+      "label": "Meaning of labels and symbols",
+      "label_ro": "Semnificația etichetelor și simbolurilor",
+      "description": "Explain the labels and symbols on the battery, its packaging and accompanying documents, using the manufacturer's information.",
+      "placeholder": "The crossed-out bin means batteries must be collected separately, not thrown in household waste.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(s) -> Art. 74(1)(e)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "eu_declaration_of_conformity_url",
+      "section": "etichete_conformitate",
+      "type": "url",
+      "label": "EU declaration of conformity",
+      "label_ro": "Declarația UE de conformitate",
+      "description": "Link to your EU Declaration of Conformity, or upload the PDF — whichever you have. It's the document stating the battery meets EU requirements.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(r)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "test_reports_url",
+      "source_name": "results_of_test_reports_proving_compliance",
+      "section": "etichete_conformitate",
+      "type": "url",
+      "label": "Results of test reports proving compliance",
+      "label_ro": "Rapoarte de testare care dovedesc conformitatea",
+      "description": "Link or upload the results of the tests that show this battery complies. The Commission describes this as a short document, such as a summary of your test reports or technical documentation.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "authority",
+      "regulation": [
+        "Annex XIII(3)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "carbon_footprint_per_kwh",
+      "section": "amprenta_carbon",
+      "type": "number",
+      "label": "Battery carbon footprint per Functional Unit",
+      "label_ro": "Amprentă de carbon per unitate funcțională",
+      "description": "Use the manufacturer's or LCA provider's documented result for this battery model and manufacturing plant. Timing depends on the battery category, the information requested and the relevant EU acts; do not estimate a missing result.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "kgCO2eq/kWh",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(c) -> Art. 7(1)(d)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "cf_raw_material_stage",
+      "source_name": "contribution_of_raw_material_acquisition_and_pre_proce",
+      "section": "amprenta_carbon",
+      "type": "number",
+      "label": "Contribution of raw material acquisition and pre-processing lifecycle stage",
+      "label_ro": "Contribuție: extracție și pre-procesare materii prime",
+      "description": "Use the manufacturer's or LCA provider's documented result for this battery model and manufacturing plant. Timing depends on the battery category, the information requested and the relevant EU acts; do not estimate a missing result.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "kgCO2eq/kWh",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(c) -> Art. 7(1)(e) -> Annex II point 4"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "cf_production_stage",
+      "source_name": "contribution_of_main_product_production_lifecycle_stag",
+      "section": "amprenta_carbon",
+      "type": "number",
+      "label": "Contribution of main product production lifecycle stage",
+      "label_ro": "Contribuție: producția produsului principal",
+      "description": "Use the manufacturer's or LCA provider's documented result for this battery model and manufacturing plant. Timing depends on the battery category, the information requested and the relevant EU acts; do not estimate a missing result.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "kgCO2eq/kWh",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(c) -> Art. 7(1)(e) -> Annex II point 4"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "cf_distribution_stage",
+      "source_name": "contribution_of_distribution_lifecycle_stage",
+      "section": "amprenta_carbon",
+      "type": "number",
+      "label": "Contribution of distribution lifecycle stage",
+      "label_ro": "Contribuție: distribuție",
+      "description": "Use the manufacturer's or LCA provider's documented result for this battery model and manufacturing plant. Timing depends on the battery category, the information requested and the relevant EU acts; do not estimate a missing result.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "kgCO2eq/kWh",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(c) -> Art. 7(1)(e) -> Annex II point 4"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "cf_end_of_life_stage",
+      "source_name": "contribution_of_end_of_life_and_recycling_lifecycle_st",
+      "section": "amprenta_carbon",
+      "type": "number",
+      "label": "Contribution of end of life and recycling lifecycle stage",
+      "label_ro": "Contribuție: sfârșit de viață și reciclare",
+      "description": "Use the manufacturer's or LCA provider's documented result for this battery model and manufacturing plant. Timing depends on the battery category, the information requested and the relevant EU acts; do not estimate a missing result.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "kgCO2eq/kWh",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(c) -> Art. 7(1)(e) -> Annex II point 4"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "cf_performance_class",
+      "section": "amprenta_carbon",
+      "type": "text",
+      "label": "Carbon footprint performance class",
+      "label_ro": "Clasa de performanță a amprentei de carbon",
+      "description": "Use the manufacturer's or LCA provider's documented result for this battery model and manufacturing plant. Timing depends on the battery category, the information requested and the relevant EU acts; do not estimate a missing result.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "regulation": [
+        "Annex XIII(1)(c) -> Art. 7(2)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "carbon_footprint_study_url",
+      "section": "amprenta_carbon",
+      "type": "url",
+      "label": "Web link to public carbon footprint study",
+      "label_ro": "Link public la studiul de amprentă de carbon",
+      "description": "Link or upload the manufacturer's or LCA provider's document for this battery model and manufacturing plant. Timing depends on the battery category, the information requested and the relevant EU acts.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "regulation": [
+        "Annex XIII(1)(c) -> Art. 7(1)(g)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "due_diligence_report_url",
+      "section": "due_diligence",
+      "type": "url",
+      "label": "Information of due diligence report",
+      "label_ro": "Raport due diligence",
+      "description": "Link or upload your battery due-diligence report from your supply-chain team. These obligations start on 18 August 2027. Two exemptions apply. The first covers a net turnover below €40 million in the financial year before the last one, when you are not part of a group whose consolidated turnover exceeds €40 million. The second covers a battery prepared for re-use or repurposing, repurposed or remanufactured, that was already placed on the market or put into service before.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(d) -> Art. 52(3)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "battery_chemistry",
+      "section": "materiale",
+      "type": "text",
+      "label": "Battery chemistry",
+      "label_ro": "Chimia bateriei",
+      "description": "Enter the battery's chemistry as named on your supplier's datasheet.",
+      "hint": "Listed as chemistry or cell type on the datasheet, e.g. LFP, NMC, NCA, Li-ion.",
+      "placeholder": "LFP (LiFePO4)",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(b)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "requirement_basic": "optional"
+    },
+    {
+      "name": "battery_chemistry_codes",
+      "section": "materiale",
+      "type": "multiselect",
+      "label": "Battery chemistry (EU list)",
+      "label_ro": "Chimia bateriei (listă UE)",
+      "description": "Pick the battery's chemistry from the EU list. Keep the name from your datasheet in Battery chemistry.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "leadAcid",
+          "label": "Lead-acid (Pb)"
+        },
+        {
+          "value": "nickelCadmium",
+          "label": "Nickel-cadmium (Ni-Cd)"
+        },
+        {
+          "value": "nickelMetalHydride",
+          "label": "Nickel-metal hydride (Ni-MH)"
+        },
+        {
+          "value": "lithiumIonNMC",
+          "label": "Lithium-ion NMC"
+        },
+        {
+          "value": "lithiumIonLFP",
+          "label": "Lithium-ion LFP"
+        },
+        {
+          "value": "lithiumIonLMO",
+          "label": "Lithium-ion LMO"
+        },
+        {
+          "value": "lithiumIonLCO",
+          "label": "Lithium-ion LCO"
+        },
+        {
+          "value": "lithiumIonNCA",
+          "label": "Lithium-ion NCA"
+        },
+        {
+          "value": "lithiumMetal",
+          "label": "Lithium metal"
+        },
+        {
+          "value": "sodiumIon",
+          "label": "Sodium-ion (Na-ion)"
+        }
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "critical_raw_materials",
+      "section": "materiale",
+      "type": "text",
+      "label": "Critical raw materials",
+      "label_ro": "Materii prime critice",
+      "description": "List the critical raw materials in the battery above 0.1% by weight — your supplier's datasheet or material declaration names these.",
+      "hint": "Look for a materials or substance declaration listing items like cobalt, lithium, natural graphite, nickel.",
+      "placeholder": "Lithium, natural graphite",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(b) -> Annex VI Part A(10)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "requirement_basic": "optional"
+    },
+    {
+      "name": "critical_raw_material_codes",
+      "section": "materiale",
+      "type": "multiselect",
+      "label": "Critical raw materials (EU list)",
+      "label_ro": "Materii prime critice (listă UE)",
+      "description": "Pick each critical raw material present above 0.1% by weight.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "antimony",
+          "label": "Antimony"
+        },
+        {
+          "value": "arsenic",
+          "label": "Arsenic"
+        },
+        {
+          "value": "bauxiteAluminaAluminium",
+          "label": "Bauxite/alumina/aluminium"
+        },
+        {
+          "value": "baryte",
+          "label": "Baryte"
+        },
+        {
+          "value": "beryllium",
+          "label": "Beryllium"
+        },
+        {
+          "value": "bismuth",
+          "label": "Bismuth"
+        },
+        {
+          "value": "boron",
+          "label": "Boron"
+        },
+        {
+          "value": "cobalt",
+          "label": "Cobalt"
+        },
+        {
+          "value": "cokingCoal",
+          "label": "Coking coal"
+        },
+        {
+          "value": "copper",
+          "label": "Copper"
+        },
+        {
+          "value": "feldspar",
+          "label": "Feldspar"
+        },
+        {
+          "value": "fluorspar",
+          "label": "Fluorspar"
+        },
+        {
+          "value": "gallium",
+          "label": "Gallium"
+        },
+        {
+          "value": "germanium",
+          "label": "Germanium"
+        },
+        {
+          "value": "hafnium",
+          "label": "Hafnium"
+        },
+        {
+          "value": "helium",
+          "label": "Helium"
+        },
+        {
+          "value": "heavyRareEarthElements",
+          "label": "Heavy rare earth elements"
+        },
+        {
+          "value": "lightRareEarthElements",
+          "label": "Light rare earth elements"
+        },
+        {
+          "value": "lithium",
+          "label": "Lithium"
+        },
+        {
+          "value": "magnesium",
+          "label": "Magnesium"
+        },
+        {
+          "value": "manganese",
+          "label": "Manganese"
+        },
+        {
+          "value": "graphite",
+          "label": "Graphite"
+        },
+        {
+          "value": "nickelBatteryGrade",
+          "label": "Nickel – battery grade"
+        },
+        {
+          "value": "niobium",
+          "label": "Niobium"
+        },
+        {
+          "value": "phosphateRock",
+          "label": "Phosphate rock"
+        },
+        {
+          "value": "phosphorus",
+          "label": "Phosphorus"
+        },
+        {
+          "value": "platinumGroupMetals",
+          "label": "Platinum group metals"
+        },
+        {
+          "value": "scandium",
+          "label": "Scandium"
+        },
+        {
+          "value": "siliconMetal",
+          "label": "Silicon metal"
+        },
+        {
+          "value": "strontium",
+          "label": "Strontium"
+        },
+        {
+          "value": "tantalum",
+          "label": "Tantalum"
+        },
+        {
+          "value": "titaniumMetal",
+          "label": "Titanium metal"
+        },
+        {
+          "value": "tungsten",
+          "label": "Tungsten"
+        },
+        {
+          "value": "vanadium",
+          "label": "Vanadium"
+        }
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "cathode_anode_electrolyte_materials",
+      "source_name": "materials_used_in_cathode_anode_and_electrolyte",
+      "section": "materiale",
+      "type": "array",
+      "item_type": "string",
+      "label": "Detailed composition, including materials used in the cathode, anode and electrolyte",
+      "label_ro": "Compoziție detaliată (catod, anod, electrolit)",
+      "description": "Add the battery's detailed composition, including the cathode, anode and electrolyte materials, from your supplier's datasheet or material declaration.",
+      "hint": "Found in the cell datasheet or a separate bill of materials / material declaration.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "restricted",
+      "regulation": [
+        "Annex XIII(2)(a)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "hazardous_substances",
+      "section": "materiale",
+      "type": "array",
+      "item_type": "string",
+      "label": "Hazardous substances",
+      "label_ro": "Substanțe periculoase",
+      "description": "List the hazardous substances present in this battery, excluding mercury, cadmium and lead, using the manufacturer's substance declaration.",
+      "hint": "Ask for the substance declaration for this battery model. A safety data sheet can support it, but may not list every substance present.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(b) -> Annex VI Part A(8)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "requirement_basic": "optional"
+    },
+    {
+      "name": "impact_of_substances",
+      "source_name": "impact_of_substances_on_environment_human_health_safet",
+      "section": "materiale",
+      "type": "text",
+      "label": "Impact of substances on environment, human health, safety, persons",
+      "label_ro": "Impactul substanțelor asupra mediului, sănătății și siguranței",
+      "description": "Describe the effects of the battery's substances on health, safety and the environment, including improper disposal, using the manufacturer's information.",
+      "hint": "Ask for the battery's substance-impact information, supported by its safety documentation.",
+      "placeholder": "Manufacturer's substance-impact information",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(s) -> Art. 74(1)(f)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "dismantling_manuals_url",
+      "source_name": "dismantling_information_manuals_for_the_removal_and_th",
+      "section": "circularitate",
+      "type": "url",
+      "label": "Dismantling information: Manuals for the removal and the disassembly of the battery pack",
+      "label_ro": "Manuale de demontare a pachetului de baterii",
+      "description": "Link or upload the manufacturer's professional dismantling manual for this battery model. It includes at least exploded diagrams, the disassembly sequence, the fastenings to undo, the tools needed, warnings, and the number of cells used and their layout.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "restricted",
+      "regulation": [
+        "Annex XIII(2)(c)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "part_numbers_url",
+      "source_name": "part_numbers_for_components",
+      "section": "circularitate",
+      "type": "url",
+      "label": "Part numbers for components",
+      "label_ro": "Coduri piese componente",
+      "description": "Link or upload the component part-number list for this battery model and configuration, obtained from the manufacturer or technical team.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "restricted",
+      "regulation": [
+        "Annex XIII(2)(b)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "spare_parts_sources_url",
+      "source_name": "information_on_sources_of_spare_parts",
+      "section": "circularitate",
+      "type": "url",
+      "label": "Information on sources of spare parts",
+      "label_ro": "Surse piese de schimb",
+      "description": "Link or upload contact details for suppliers of spare parts for this battery model.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "restricted",
+      "regulation": [
+        "Annex XIII(2)(b)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "safety_measures_url",
+      "source_name": "safety_measures",
+      "section": "circularitate",
+      "type": "url",
+      "label": "Safety measures",
+      "label_ro": "Măsuri de siguranță",
+      "description": "Link or upload the manufacturer's safety measures for professionals handling and dismantling this battery model.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "restricted",
+      "regulation": [
+        "Annex XIII(2)(d)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "pre_consumer_recycled_nickel_share",
+      "section": "circularitate",
+      "type": "number",
+      "label": "Pre-consumer recycled nickel share",
+      "label_ro": "Nichel reciclat pre-consum (%)",
+      "description": "Obtain the documented share for this battery model from the manufacturer. The start date depends on the battery category and the applicable EU calculation rules; do not estimate a missing figure.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(e) -> Art. 8(1)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "pre_consumer_recycled_cobalt_share",
+      "section": "circularitate",
+      "type": "number",
+      "label": "Pre-consumer recycled cobalt share",
+      "label_ro": "Cobalt reciclat pre-consum (%)",
+      "description": "Obtain the documented share for this battery model from the manufacturer. The start date depends on the battery category and the applicable EU calculation rules; do not estimate a missing figure.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(e) -> Art. 8(1)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "pre_consumer_recycled_lithium_share",
+      "section": "circularitate",
+      "type": "number",
+      "label": "Pre-consumer recycled lithium share",
+      "label_ro": "Litiu reciclat pre-consum (%)",
+      "description": "Obtain the documented share for this battery model from the manufacturer. The start date depends on the battery category and the applicable EU calculation rules; do not estimate a missing figure.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(e) -> Art. 8(1)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "post_consumer_recycled_nickel_share",
+      "section": "circularitate",
+      "type": "number",
+      "label": "Post-consumer recycled nickel share",
+      "label_ro": "Nichel reciclat post-consum (%)",
+      "description": "Obtain the documented share for this battery model from the manufacturer. The start date depends on the battery category and the applicable EU calculation rules; do not estimate a missing figure.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(e) -> Art. 8(1)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "post_consumer_recycled_cobalt_share",
+      "section": "circularitate",
+      "type": "number",
+      "label": "Post-consumer recycled cobalt share",
+      "label_ro": "Cobalt reciclat post-consum (%)",
+      "description": "Obtain the documented share for this battery model from the manufacturer. The start date depends on the battery category and the applicable EU calculation rules; do not estimate a missing figure.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(e) -> Art. 8(1)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "post_consumer_recycled_lithium_share",
+      "section": "circularitate",
+      "type": "number",
+      "label": "Post-consumer recycled lithium share",
+      "label_ro": "Litiu reciclat post-consum (%)",
+      "description": "Obtain the documented share for this battery model from the manufacturer. The start date depends on the battery category and the applicable EU calculation rules; do not estimate a missing figure.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(e) -> Art. 8(1)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "recycled_lead_share",
+      "section": "circularitate",
+      "type": "number",
+      "label": "Recycled lead share",
+      "label_ro": "Plumb reciclat (%)",
+      "description": "Obtain the documented share for this battery model from the manufacturer. The start date depends on the battery category and the applicable EU calculation rules; do not estimate a missing figure.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "withheld_from_public": "format_pending",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(e) -> Art. 8(1)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "renewable_content_share",
+      "section": "circularitate",
+      "type": "number",
+      "label": "Renewable content share",
+      "label_ro": "Conținut din surse regenerabile (%)",
+      "description": "Ask the manufacturer for the documented renewable-content share for this battery model. It is required in the passport from 18 February 2027; ask for the calculation basis with the figure.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "public",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(f)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "end_user_waste_prevention_url",
+      "source_name": "information_on_the_role_of_end_users_in_contributing_t",
+      "section": "circularitate",
+      "type": "url",
+      "label": "Information on the role of end-users in contributing to waste prevention",
+      "label_ro": "Rolul utilizatorului în prevenirea deșeurilor",
+      "description": "Link or upload guidance on extending battery life and enabling reuse or repurposing, using the manufacturer's information.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(s) -> Art. 74(1)(a)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "end_user_separate_collection_url",
+      "source_name": "information_on_the_role_of_end_users_in_contributing_t_2",
+      "section": "circularitate",
+      "type": "url",
+      "label": "Information on the role of end-users in contributing to the separate collection of waste batteries",
+      "label_ro": "Rolul utilizatorului în colectarea separată",
+      "description": "Link or upload instructions for handing in this battery for separate collection, using the collection scheme's information.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(s) -> Art. 74(1)(b)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "collection_and_second_life_url",
+      "source_name": "information_on_battery_collection_preparation_for_seco",
+      "section": "circularitate",
+      "type": "url",
+      "label": "Information on battery collection, preparation for second life and on treatment at end of life",
+      "label_ro": "Colectare, pregătire pentru a doua viață și reciclare",
+      "description": "Link or upload the available take-back and collection points, and information on preparation for reuse, repurposing and treatment, for the markets you serve.",
+      "requirement": "required",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(s) -> Art. 74(1)(c)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "waste_battery_safety_instructions",
+      "section": "circularitate",
+      "type": "text",
+      "label": "Safety instructions for handling waste batteries",
+      "label_ro": "Instrucțiuni de siguranță pentru bateriile uzate",
+      "description": "Tell people how to handle this battery safely at the end of its life, including the risks if it contains lithium.",
+      "hint": "Obtain the manufacturer's instructions for safely handling this battery as waste, including damaged batteries and lithium risks where relevant.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(s) -> Art. 74(1)(d)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "rated_capacity",
+      "section": "performanta",
+      "type": "number",
+      "label": "Rated capacity",
+      "label_ro": "Capacitate nominală",
+      "description": "Copy the rated capacity from the technical documentation for this battery model.",
+      "hint": "Listed as rated capacity or nominal capacity, in Ah (or mAh for small/LMT batteries).",
+      "placeholder": "100",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "Ah",
+      "unit_field": "rated_capacity_unit",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(g)"
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ],
+      "requirement_basic": "optional"
+    },
+    {
+      "name": "rated_capacity_unit",
+      "section": "performanta",
+      "type": "select",
+      "label": "Rated capacity unit",
+      "label_ro": "Unitate capacitate",
+      "description": "Pick Ah, or mAh for LMT batteries — match whatever your datasheet uses.",
+      "requirement": "optional",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "Ah",
+          "label": "Ah"
+        },
+        {
+          "value": "mAh",
+          "label": "mAh"
+        }
+      ],
+      "profiles": [
+        "battery_full",
+        "battery_basic"
+      ]
+    },
+    {
+      "name": "capacity_fade",
+      "section": "performanta",
+      "type": "number",
+      "label": "Capacity fade",
+      "label_ro": "Degradarea capacității",
+      "description": "Copy the manufacturer's documented figure for how much capacity the battery loses over time.",
+      "hint": "Take it from the manufacturer's performance and durability document. If the document gives no capacity fade, ask the manufacturer for it. If it only gives the capacity kept, subtract that from 100: 80% kept means 20% fade.",
+      "placeholder": "20",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev",
+          "lmt",
+          "industrial_stationary",
+          "industrial_other"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(4)(a) -> Art. 10(1) -> Annex IV Part A(1)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "minimum_voltage",
+      "section": "performanta",
+      "type": "number",
+      "label": "Minimum voltage",
+      "label_ro": "Tensiune minimă",
+      "description": "Copy the minimum safe operating voltage from the technical documentation for this battery model.",
+      "hint": "Listed as minimum, cut-off, or discharge voltage on the datasheet.",
+      "placeholder": "40",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "V",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(h)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "maximum_voltage",
+      "section": "performanta",
+      "type": "number",
+      "label": "Maximum voltage",
+      "label_ro": "Tensiune maximă",
+      "description": "Copy the maximum safe operating voltage from the technical documentation for this battery model.",
+      "hint": "Listed as maximum or charge voltage on the datasheet.",
+      "placeholder": "58.4",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "V",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(h)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "nominal_voltage",
+      "section": "performanta",
+      "type": "number",
+      "label": "Nominal voltage",
+      "label_ro": "Tensiune nominală",
+      "description": "Copy the nominal voltage from the technical documentation for this battery model.",
+      "hint": "Use the nominal voltage stated for this battery model and configuration in its technical documentation.",
+      "placeholder": "51.2",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "V",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(h)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "voltage_temperature_lower",
+      "section": "performanta",
+      "type": "number",
+      "label": "Voltage temperature range, lower limit",
+      "label_ro": "Temperatură minimă pentru tensiuni",
+      "description": "Enter the lowest temperature at which the minimum, nominal and maximum voltages apply.",
+      "placeholder": "-20",
+      "requirement": "optional",
+      "access_tier": "public",
+      "unit": "°C",
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "voltage_temperature_upper",
+      "section": "performanta",
+      "type": "number",
+      "label": "Voltage temperature range, upper limit",
+      "label_ro": "Temperatură maximă pentru tensiuni",
+      "description": "Enter the highest temperature at which the minimum, nominal and maximum voltages apply.",
+      "placeholder": "60",
+      "requirement": "optional",
+      "access_tier": "public",
+      "unit": "°C",
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "original_power_capability",
+      "section": "performanta",
+      "type": "number",
+      "label": "Original power capability",
+      "label_ro": "Capacitate de putere inițială",
+      "description": "Copy the battery's rated power from the technical documentation for this battery model.",
+      "hint": "Listed as rated or continuous power, in watts (W).",
+      "placeholder": "5000",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "W",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(i)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "power_fade",
+      "section": "performanta",
+      "type": "number",
+      "label": "Power fade",
+      "label_ro": "Degradarea puterii",
+      "description": "Copy the manufacturer's documented figure for how much power the battery loses over time.",
+      "hint": "Take it from the manufacturer's performance and durability document. If the document gives no power fade, ask the manufacturer for it. If it only gives the power kept, subtract that from 100: 90% kept means 10% fade.",
+      "placeholder": "20",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev",
+          "lmt",
+          "industrial_stationary",
+          "industrial_other"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(4)(a) -> Annex IV Part A(2)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "maximum_permitted_battery_power",
+      "section": "performanta",
+      "type": "number",
+      "label": "Maximum permitted battery power",
+      "label_ro": "Putere maximă permisă",
+      "description": "Copy the maximum permitted power from the technical documentation for this battery model.",
+      "hint": "Listed as peak or maximum power, in watts (W).",
+      "placeholder": "7500",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "W",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(i)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "initial_round_trip_energy_efficiency",
+      "section": "performanta",
+      "type": "number",
+      "label": "Initial round trip energy efficiency",
+      "label_ro": "Eficiență energetică dus-întors inițială",
+      "description": "Copy the round-trip energy efficiency at the start of life from the technical documentation for this battery model.",
+      "hint": "Listed as round-trip efficiency or RTE, as a percentage.",
+      "placeholder": "96",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev",
+          "lmt",
+          "industrial_stationary",
+          "industrial_other"
+        ]
+      },
+      "access_tier": "public",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(n)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "round_trip_energy_efficiency_at_50_of_cycle_life",
+      "section": "performanta",
+      "type": "number",
+      "label": "Round trip energy efficiency at 50% of cycle life",
+      "label_ro": "Eficiență dus-întors la 50% din durata de viață",
+      "description": "Copy the round-trip energy efficiency at half the battery's cycle life from the technical documentation for this battery model.",
+      "hint": "Listed as round-trip efficiency or RTE at 50% of cycle life, as a percentage.",
+      "placeholder": "92",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev",
+          "lmt",
+          "industrial_stationary",
+          "industrial_other"
+        ]
+      },
+      "access_tier": "public",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(n)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "energy_round_trip_efficiency_fade",
+      "section": "performanta",
+      "type": "number",
+      "label": "Energy round trip efficiency fade",
+      "label_ro": "Degradarea eficienței dus-întors",
+      "description": "Copy the manufacturer's documented figure for how much round-trip efficiency drops over time, if given.",
+      "hint": "Listed as round-trip efficiency fade on the datasheet.",
+      "placeholder": "4",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(4)(a) -> Annex IV Part A(4)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "initial_self_discharge_rate",
+      "section": "performanta",
+      "type": "number",
+      "label": "Initial self-discharge rate",
+      "label_ro": "Rată inițială de auto-descărcare (lunar)",
+      "description": "Copy the self-discharge rate at the start of life from the technical documentation for this battery model, if given.",
+      "hint": "Listed as self-discharge rate, usually as a percentage per month.",
+      "placeholder": "3",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "unit": "%/month",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(4)(b) -> Art. 14 -> Annex VII Part A(4)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "initial_self_discharge_rate_per_year",
+      "section": "performanta",
+      "type": "number",
+      "label": "Initial self-discharge rate per year",
+      "label_ro": "Rată inițială de auto-descărcare (anual)",
+      "description": "Copy the yearly self-discharge rate at the start of life from the technical documentation for this battery model, if given.",
+      "hint": "Use the yearly figure only. Leave this blank if the datasheet gives a monthly rate.",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "unit": "%/year",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(4)(b) -> Art. 14 -> Annex VII Part A(4)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "initial_internal_resistance_pack",
+      "source_name": "initial_internal_resistance_of_battery_cell_and_pack_m",
+      "section": "performanta",
+      "type": "number",
+      "label": "Initial internal resistance of the battery pack",
+      "label_ro": "Rezistență internă inițială (pachet)",
+      "description": "Use the manufacturer's documented resistance measurement for the assembled battery pack.",
+      "hint": "Look for DC-IR, DCIR, or internal resistance, usually quoted in milliohms (mΩ).",
+      "placeholder": "0.025",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "Ohm",
+      "unit_field": "initial_internal_resistance_pack_unit",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(o)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "initial_internal_resistance_pack_unit",
+      "section": "performanta",
+      "type": "select",
+      "label": "Pack resistance unit",
+      "label_ro": "Unitate rezistență pachet",
+      "description": "Look for DC-IR, DCIR, or internal resistance, usually quoted in milliohms (mΩ).",
+      "requirement": "optional",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "mOhm",
+          "label": "mΩ"
+        },
+        {
+          "value": "Ohm",
+          "label": "Ω"
+        }
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "initial_internal_resistance_of_battery_cell",
+      "section": "performanta",
+      "type": "number",
+      "label": "Initial internal resistance of the battery cell",
+      "label_ro": "Rezistență internă inițială (celulă)",
+      "description": "Use the manufacturer's documented resistance measurement for one cell of this battery model.",
+      "hint": "Look for DC-IR, DCIR, or internal resistance, usually quoted in milliohms (mΩ).",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "public",
+      "unit": "Ohm",
+      "unit_field": "initial_internal_resistance_cell_unit",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(o)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "initial_internal_resistance_cell_unit",
+      "section": "performanta",
+      "type": "select",
+      "label": "Cell resistance unit",
+      "label_ro": "Unitate rezistență celulă",
+      "description": "Look for DC-IR, DCIR, or internal resistance, usually quoted in milliohms (mΩ).",
+      "requirement": "optional",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "mOhm",
+          "label": "mΩ"
+        },
+        {
+          "value": "Ohm",
+          "label": "Ω"
+        }
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "internal_resistance_increase",
+      "source_name": "internal_resistance_increase_of_pack_cell_and_module_r",
+      "section": "performanta",
+      "type": "number",
+      "label": "Internal resistance increase of pack (cell and module recommended)",
+      "label_ro": "Creșterea rezistenței interne",
+      "description": "Copy the manufacturer's documented figure for how much internal resistance rises over time.",
+      "hint": "Listed as internal resistance increase or DCIR growth on the datasheet.",
+      "placeholder": "20",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev",
+          "lmt",
+          "industrial_stationary",
+          "industrial_other"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(4)(a) -> Annex IV Part A(3)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "expected_lifetime_in_calendar_years",
+      "section": "performanta",
+      "type": "number",
+      "label": "Expected lifetime in calendar years",
+      "label_ro": "Durată de viață estimată (ani calendaristici)",
+      "description": "Copy the expected lifetime in years from the technical documentation for this battery model.",
+      "hint": "Listed as calendar life or design life on the datasheet.",
+      "placeholder": "10",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev",
+          "lmt",
+          "industrial_stationary",
+          "industrial_other"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "years",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(4)(a) -> Annex IV Part A(5)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "expected_lifetime_number_of_charge_discharge_cycles",
+      "section": "performanta",
+      "type": "number",
+      "label": "Expected lifetime: Number of charge-discharge cycles",
+      "label_ro": "Durată de viață estimată (cicluri)",
+      "description": "Copy the rated number of charge-discharge cycles from the technical documentation for this battery model.",
+      "hint": "From 18 February 2027 every battery must state all three of these. In Product basics, an industrial battery used only for back-up power can say so. So can an other industrial battery that is not designed to be recharged. Either answer removes these three. Use the documented cycle count, reference test and test C-rate together. Ask the manufacturer or technical team for missing evidence and keep unfinished work in draft. A datasheet that omits the test does not show that it is inapplicable.",
+      "placeholder": "6000",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev",
+          "lmt",
+          "industrial_stationary",
+          "industrial_other"
+        ]
+      },
+      "access_tier": "public",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(j)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "cycle_life_reference_test",
+      "section": "performanta",
+      "type": "text",
+      "label": "Cycle-life reference test",
+      "label_ro": "Test de referință pentru ciclul de viață",
+      "description": "Identify the reference test or test method used for this battery model's cycle-life figure, as recorded in its technical documentation.",
+      "hint": "From 18 February 2027 every battery must state all three of these. In Product basics, an industrial battery used only for back-up power can say so. So can an other industrial battery that is not designed to be recharged. Either answer removes these three. Use the documented cycle count, reference test and test C-rate together. Ask the manufacturer or technical team for missing evidence and keep unfinished work in draft. A datasheet that omits the test does not show that it is inapplicable.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev",
+          "lmt",
+          "industrial_stationary",
+          "industrial_other"
+        ]
+      },
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(j)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "c_rate_of_relevant_cycle_life_test",
+      "section": "performanta",
+      "type": "number",
+      "label": "C-rate of relevant cycle-life test",
+      "label_ro": "C-rate al testului de ciclu de viață",
+      "description": "Copy the C-rate used for the cycle-life test from the technical documentation for this battery model.",
+      "hint": "From 18 February 2027 every battery must state all three of these. In Product basics, an industrial battery used only for back-up power can say so. So can an other industrial battery that is not designed to be recharged. Either answer removes these three. Use the documented cycle count, reference test and test C-rate together. Ask the manufacturer or technical team for missing evidence and keep unfinished work in draft. A datasheet that omits the test does not show that it is inapplicable.",
+      "placeholder": "1",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev",
+          "lmt",
+          "industrial_stationary",
+          "industrial_other"
+        ]
+      },
+      "access_tier": "public",
+      "unit": "A/Ah",
+      "min": 0,
+      "regulation": [
+        "Annex XIII(1)(p)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "capacity_threshold_for_exhaustion",
+      "section": "performanta",
+      "type": "number",
+      "label": "Capacity threshold for exhaustion",
+      "label_ro": "Prag de capacitate pentru epuizare",
+      "description": "Enter the percentage of remaining capacity below which the battery is considered worn out. The Regulation asks for this value only for electric vehicle batteries.",
+      "hint": "Sometimes given as the end-of-life or state-of-health threshold on the datasheet.",
+      "placeholder": "80",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev"
+        ]
+      },
+      "access_tier": "public",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "regulation": [
+        "Annex XIII(1)(k)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "temperature_range_idle_state_lower_boundary",
+      "section": "performanta",
+      "type": "number",
+      "label": "Temperature range idle state, lower boundary",
+      "label_ro": "Temperatură minimă în repaus",
+      "description": "Enter the lowest temperature this battery can withstand when not in use, from its documented reference test.",
+      "hint": "Check the test conditions for the range when the battery is not in use. Ask the manufacturer if the document only gives charging or operating limits.",
+      "placeholder": "-20",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "°C",
+      "regulation": [
+        "Annex XIII(1)(l)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "temperature_range_idle_state_upper_boundary",
+      "section": "performanta",
+      "type": "number",
+      "label": "Temperature range idle state, upper boundary",
+      "label_ro": "Temperatură maximă în repaus",
+      "description": "Enter the highest temperature this battery can withstand when not in use, from its documented reference test.",
+      "hint": "Check the test conditions for the range when the battery is not in use. Ask the manufacturer if the document only gives charging or operating limits.",
+      "placeholder": "60",
+      "requirement": "required",
+      "access_tier": "public",
+      "unit": "°C",
+      "regulation": [
+        "Annex XIII(1)(l)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "temperature_range_idle_state_reference_test",
+      "section": "performanta",
+      "type": "text",
+      "label": "Reference test for the idle temperature range",
+      "label_ro": "Test de referință temperatură repaus",
+      "description": "Name the test or standard behind the temperature range this battery can withstand when not in use.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "public",
+      "regulation": [
+        "Annex XIII(1)(l)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "model_health_declaration",
+      "section": "performanta",
+      "type": "select",
+      "label": "Use model values as starting values for individual batteries",
+      "label_ro": "Declarație stare de sănătate la nivel de model",
+      "description": "Use the model’s starting values for batteries that do not yet have their own recorded values.",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "options": [
+        {
+          "value": "declared",
+          "label": "Model declaration"
+        }
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "status",
+      "section": "unitate",
+      "type": "select",
+      "label": "Battery status",
+      "label_ro": "Statutul bateriei",
+      "description": "Record this battery’s current status.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "public",
+      "options": [
+        {
+          "value": "original",
+          "label": "Original"
+        },
+        {
+          "value": "repurposed",
+          "label": "Repurposed"
+        },
+        {
+          "value": "re-used",
+          "label": "Re-used"
+        },
+        {
+          "value": "remanufactured",
+          "label": "Remanufactured"
+        },
+        {
+          "value": "waste",
+          "label": "Waste"
+        }
+      ],
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(c)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "state_of_certified_energy",
+      "section": "unitate",
+      "type": "number",
+      "label": "State of certified energy",
+      "label_ro": "Stare energie certificată (SoCE)",
+      "description": "Record this battery’s state of certified energy as a percentage.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "ev"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(b) -> Art. 14(1) -> Annex VII Part A"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "remaining_capacity",
+      "section": "unitate",
+      "type": "number",
+      "label": "Remaining capacity",
+      "label_ro": "Capacitate rămasă",
+      "description": "Record how much charge this battery can still deliver from a full charge, in ampere-hours. Capacity is how much charge it delivers. Power is how fast it delivers energy.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "lmt",
+          "industrial_stationary"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "Ah",
+      "unit_field": "rated_capacity_unit",
+      "min": 0,
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(b) -> Art. 14(1) -> Annex VII Part A(1)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "remaining_power_capability",
+      "section": "unitate",
+      "type": "number",
+      "label": "Remaining power capability",
+      "label_ro": "Capacitate de putere rămasă",
+      "description": "Record how much power this battery can still deliver, in watts. Power is how fast it delivers energy. Capacity is how much charge it delivers.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "lmt"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "W",
+      "min": 0,
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(b) -> Annex VII Part A(2)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "remaining_round_trip_efficiency",
+      "section": "unitate",
+      "type": "number",
+      "label": "Remaining round-trip efficiency",
+      "label_ro": "Eficiență dus-întors rămasă",
+      "description": "Record the share of the energy used to charge this battery that it still gives back when it discharges, as a percentage.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "lmt"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(b) -> Annex VII Part A(3)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "self_discharge_rate",
+      "section": "unitate",
+      "type": "number",
+      "label": "Self-discharge rate",
+      "label_ro": "Rată de auto-descărcare (lunar)",
+      "description": "Record this battery’s self-discharge rate as a percentage per month. Dated readings show how it changes over time.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "lmt",
+          "industrial_stationary"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "%/month",
+      "min": 0,
+      "max": 100,
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(b) -> Art. 14(1) -> Annex VII Part A(4)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "self_discharge_rate_per_year",
+      "section": "unitate",
+      "type": "number",
+      "label": "Yearly self-discharge rate",
+      "label_ro": "Rată de auto-descărcare (anual)",
+      "description": "Record the share of its charge this battery loses by itself in a year, as a percentage. For an LMT battery, the EU DPP Registry asks for this yearly figure.",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "unit": "%/year",
+      "min": 0,
+      "max": 100,
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(b) -> Art. 14(1) -> Annex VII Part A(4)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "ohmic_resistance",
+      "section": "unitate",
+      "type": "number",
+      "label": "Ohmic resistance",
+      "label_ro": "Rezistență ohmică",
+      "description": "Record the ohmic resistance of this battery pack as it is now, in mΩ or Ω.",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "required_when": {
+        "field": "battery_category",
+        "one_of": [
+          "lmt"
+        ]
+      },
+      "access_tier": "restricted",
+      "unit": "Ohm",
+      "unit_field": "initial_internal_resistance_pack_unit",
+      "min": 0,
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(b) -> Annex VII Part A(5)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "charge_discharge_cycles",
+      "section": "unitate",
+      "type": "number",
+      "label": "Charge and discharge cycles",
+      "label_ro": "Număr cicluri încărcare-descărcare",
+      "description": "Record the number of charge and discharge cycles completed by this battery. Once the battery is in use, its passport must hold this information and keep it up to date. This applies from 18 February 2027.",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "min": 0,
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(d)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "negative_events",
+      "section": "unitate",
+      "type": "text",
+      "label": "Negative events",
+      "label_ro": "Evenimente negative (accidente)",
+      "description": "Describe events that affected this battery, such as an accident. Once the battery is in use, its passport must hold this information and keep it up to date. This applies from 18 February 2027.",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(d)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "temperature",
+      "section": "unitate",
+      "type": "number",
+      "label": "Temperature",
+      "label_ro": "Temperatură (expunere)",
+      "description": "Record this battery’s temperature in degrees Celsius. Once the battery is in use, its passport must hold this information and keep it up to date. This applies from 18 February 2027.",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "unit": "°C",
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(d)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "state_of_charge",
+      "section": "unitate",
+      "type": "number",
+      "label": "State of charge",
+      "label_ro": "Stare de încărcare (SoC)",
+      "description": "Record this battery’s state of charge as a percentage. Once the battery is in use, its passport must hold this information and keep it up to date. This applies from 18 February 2027.",
+      "requirement": "optional",
+      "access_tier": "restricted",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "per_battery": true,
+      "regulation": [
+        "Annex XIII(4)(d)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "batch_number",
+      "section": "unitate",
+      "type": "text",
+      "label": "Batch / lot number",
+      "label_ro": "Număr lot (GS1 AI 10)",
+      "requirement": "optional",
+      "access_tier": "public",
+      "per_battery": true,
+      "regulation": [
+        "Annex VI Part A(2) (identification)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    },
+    {
+      "name": "unit_manufacturing_date",
+      "section": "unitate",
+      "type": "date",
+      "label": "Manufacturing date of this unit",
+      "label_ro": "Data fabricației unității",
+      "requirement": "required",
+      "required_from": "2027-02-18",
+      "access_tier": "public",
+      "per_battery": true,
+      "regulation": [
+        "Annex VI Part A(4)"
+      ],
+      "profiles": [
+        "battery_full"
+      ]
+    }
+  ]
+}
