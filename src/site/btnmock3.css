@@ -1,0 +1,76 @@
+/* Frameless nav buttons (machete 3). Base bar from btnmock2.css. */
+.t-bar { gap: 16px; }
+.t-nav { margin-left: 18px; gap: 6px; position: relative; }
+.t-nav a { transition: background .15s, box-shadow .15s, transform .15s; }
+.t-bar .b2-icon { background: rgb(255 255 255 / .12); }
+.t-bar .b2-lang { background: transparent; }
+
+/* 1 soft tint */
+.t1 .t-nav a { background: rgb(255 255 255 / .1); border-radius: 11px; }
+.t1 .t-nav a.cur { background: rgb(255 255 255 / .22); font-weight: 600; }
+.t1 .t-nav a.hov { background: rgb(255 255 255 / .16); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .55); }
+
+/* 2 darker tint */
+.t2 .t-nav a { background: rgb(4 40 44 / .28); border-radius: 11px; }
+.t2 .t-nav a.cur { background: rgb(4 40 44 / .5); font-weight: 600; }
+.t2 .t-nav a.hov { background: rgb(255 255 255 / .12); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .45); }
+
+/* 3 lifted with shadow */
+.t3 .t-nav a { background: rgb(255 255 255 / .14); border-radius: 11px; box-shadow: 0 2px 6px rgb(0 30 34 / .28), inset 0 1px 0 rgb(255 255 255 / .18); }
+.t3 .t-nav a.cur { background: #fff; color: #0e7c86; font-weight: 600; }
+.t3 .t-nav a.hov { transform: translateY(-2px); box-shadow: 0 8px 16px rgb(0 30 34 / .32), inset 0 0 0 1.5px rgb(255 255 255 / .5); }
+
+/* 4 key */
+.t4 .t-nav a { background: rgb(255 255 255 / .14); border-radius: 10px; box-shadow: inset 0 -3px 0 rgb(0 30 34 / .3); padding-bottom: 12px; }
+.t4 .t-nav a.cur { background: #fff; color: #0e7c86; font-weight: 600; box-shadow: inset 0 -3px 0 #b9e3e3; }
+.t4 .t-nav a.hov { background: rgb(255 255 255 / .22); box-shadow: inset 0 -3px 0 rgb(0 30 34 / .3), 0 0 0 1.5px rgb(255 255 255 / .5); }
+
+/* 5 icons */
+.t5 .t-nav a { gap: 7px; background: rgb(255 255 255 / .07); border-radius: 10px; }
+.t5 .t-nav a svg:first-child { opacity: .9; }
+.t5 .t-nav a.cur { background: rgb(255 255 255 / .2); font-weight: 600; }
+.t5 .t-nav a.hov { background: rgb(255 255 255 / .14); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .5); }
+
+/* 6 shared tray */
+.t6 .t-nav { gap: 2px; padding: 5px; border-radius: 14px; background: rgb(0 30 34 / .22); }
+.t6 .t-nav a { border-radius: 10px; }
+.t6 .t-nav a.cur { background: #fff; color: #0e7c86; font-weight: 600; box-shadow: 0 2px 6px rgb(0 0 0 / .15); }
+.t6 .t-nav a.hov { box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .55); }
+
+/* 7 dot for current */
+.t7 .t-nav a { position: relative; background: rgb(255 255 255 / .08); border-radius: 99px; padding: 10px 16px; }
+.t7 .t-nav a.cur { font-weight: 600; background: rgb(255 255 255 / .16); }
+.t7 .t-nav a.cur::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: #fff; }
+.t7 .t-nav a.hov { box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .55); }
+
+/* 8 ring only on hover */
+.t8 .t-nav a { background: rgb(255 255 255 / .05); border-radius: 10px; gap: 6px; }
+.t8 .t-nav a > svg:last-child { opacity: 0; width: 0; transition: opacity .15s, width .15s; }
+.t8 .t-nav a.cur { font-weight: 700; background: rgb(255 255 255 / .14); }
+.t8 .t-nav a.hov { box-shadow: inset 0 0 0 1.5px #fff; background: rgb(255 255 255 / .08); }
+.t8 .t-nav a.hov > svg:last-child { opacity: 1; width: 13px; }
+
+/* 9 two-line (advanced) */
+.t9 .t-nav a { background: rgb(255 255 255 / .08); border-radius: 12px; padding: 8px 14px; }
+.t9 .two { display: grid; line-height: 1.15; text-align: left; }
+.t9 .two b { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; font-size: 15px; }
+.t9 .two small { font-size: 11.5px; opacity: .75; font-weight: 500; }
+.t9 .t-nav a.cur { background: #fff; color: #0e7c86; }
+.t9 .t-nav a.hov { box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .55); background: rgb(255 255 255 / .14); }
+
+/* 10 sliding highlight (advanced) */
+.t10 .t-nav { gap: 2px; }
+.t10 .t-nav a { position: relative; z-index: 1; border-radius: 11px; }
+.t10 .t-nav a.cur { color: #0e7c86; font-weight: 600; }
+.t10 .t-nav a.hov { color: #0e7c86; }
+.t10 .t-nav a.hov ~ a.cur { color: #fff; font-weight: 500; }
+.t-slider { position: absolute; top: 50%; height: 42px; margin-top: -21px; border-radius: 11px; background: #fff; box-shadow: 0 2px 8px rgb(0 0 0 / .18); z-index: 0; transition: left .25s, width .25s; }
+.t-slider.at2 { left: 286px; width: 96px; }
+.t-slider.at1 { left: 172px; width: 112px; }
+/* 10 — highlight sits on the current item and moves to the hovered one */
+.t10 .t-nav a.cur { background: #fff; box-shadow: 0 2px 8px rgb(0 0 0 / .18); }
+.t10 .t-nav:has(a.hov) a.cur { background: transparent; box-shadow: none; color: #fff; font-weight: 500; }
+.t10 .t-nav a.hov { background: #fff; color: #0e7c86; box-shadow: 0 2px 8px rgb(0 0 0 / .18); }
+.t10 .t-nav a { transition: background .25s, color .25s, box-shadow .25s; }
+
+.t9 .two small { text-transform: none; letter-spacing: 0; color: inherit; font-size: 12px; opacity: .78; font-weight: 500; }
