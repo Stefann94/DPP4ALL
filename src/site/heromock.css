@@ -95,3 +95,11 @@
 
 .hm2-stack { padding-right: 175px; }
 .hm2-phone { right: -14px; }
+
+/* mobile: card full width, phone below it (must come after the desktop overrides above) */
+@media (max-width: 600px) {
+  .site section.hm2-hero { padding-block: 36px 28px; }
+  .hm2-stack { padding: 0; }
+  .hm2-phone { position: static; margin: 18px auto 0; width: 210px; }
+  .hm2-proof { margin-top: 28px; }
+}

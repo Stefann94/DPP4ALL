@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '../components/ui';
 import { SiteLayout } from './SiteLayout';
-import { Checker, ROLES, type CheckerPreset } from './Checker';
+import { Checker, type CheckerPreset } from './Checker';
+import { HeroH3 } from './HeroParts';
 import { Timeline } from './Timeline';
 import { DemoPassport, HeroFlow } from './Mockups';
-import { CATEGORIES, TIMELINE } from '../data/regulations';
+import { CATEGORIES } from '../data/regulations';
 
 const FEATURES: [string, string, string][] = [
   ['shield', 'Registru UE și vamă', 'Cod NC validat, ID de înregistrare și dovada de înregistrare păstrate pe lot.'],
@@ -33,46 +34,12 @@ const FAQ: [string, React.ReactNode][] = [
 export default function Home() {
   const [q, setQ] = useState<CheckerPreset>({ cat: 'baterii', sub: 'lmt', role: 'importer', b2c: true });
   const [run, setRun] = useState(0);
-  const cat = CATEGORIES.find(c => c.id === q.cat)!;
   const verify = () => { setRun(r => r + 1); setTimeout(() => document.getElementById('verificator')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30); };
-  const firm = TIMELINE.filter(t => t.firm && t.date >= new Date().toISOString().slice(0, 10)).slice(0, 4);
-  const nextInd = TIMELINE.find(t => !t.firm);
   return (
     <SiteLayout>
-      {/* 2 · Hero (S2: brand bar + checker form) */}
-      <section className="s-hero2">
-        <div className="wrap">
-          <h1>Ce cere UE pentru produsele pe care le importați?</h1>
-          <p className="lead">Răspuns în 60 de secunde, cu sursa oficială la fiecare obligație. Apoi cereți datele fabricii în chineză și publicați pașaportul cu cod QR.</p>
-          <form className="s-qform" onSubmit={e => { e.preventDefault(); verify(); }}>
-            <label><small>Ce importați?</small>
-              <select value={q.cat} onChange={e => { const c = CATEGORIES.find(x => x.id === e.target.value)!; setQ({ ...q, cat: c.id, sub: c.subtypes?.[0]?.id }); }}>
-                {CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-              </select>
-            </label>
-            {cat.subtypes && (
-              <label><small>Ce fel?</small>
-                <select value={q.sub} onChange={e => setQ({ ...q, sub: e.target.value })}>{cat.subtypes.map(s => <option key={s.id} value={s.id}>{s.label}</option>)}</select>
-              </label>
-            )}
-            <label><small>Rolul vostru</small>
-              <select value={q.role} onChange={e => setQ({ ...q, role: e.target.value as CheckerPreset['role'] })}>{ROLES.map(r => <option key={r.id} value={r.id}>{r.label}</option>)}</select>
-            </label>
-            <label><small>Vindeți către</small>
-              <select value={q.b2c ? 'b2c' : 'b2b'} onChange={e => setQ({ ...q, b2c: e.target.value === 'b2c' })}><option value="b2c">Consumatori</option><option value="b2b">Doar firme (B2B)</option></select>
-            </label>
-            <button className="btn primary lg">Verifică</button>
-          </form>
-          <div className="s-dtags">
-            {firm.map(t => <a key={t.label} href="#termene">{t.label.split(':')[0]} · {t.date.split('-').reverse().join('.')}</a>)}
-            {nextInd && <a className="ind" href="#termene">{nextInd.label.split(':')[0]} · ~{nextInd.date.slice(0, 4)}</a>}
-          </div>
-          <div className="micro">
-            <span><Icon name="check" />Fără card</span>
-            <span><Icon name="check" />Date găzduite în România</span>
-            <span><Icon name="check" />Exportați tot, oricând</span>
-          </div>
-        </div>
+      {/* 2 · Hero (H3: copy + checker form, live answer card + supplier phone) */}
+      <section className="hm2-hero tint">
+        <div className="wrap"><HeroH3 q={q} setQ={setQ} onVerify={verify} /></div>
       </section>
 
       {/* 3 · Checker result */}
@@ -92,7 +59,7 @@ export default function Home() {
         <div className="wrap s-split">
           <div>
             <span className="eyebrow">Fabrica → voi → clientul</span>
-            <h2 style={{ marginTop: 12 }}>Pașaportul digital pentru fiecare produs pe care îl importați</h2>
+            <h2 style={{ marginTop: 12 }}>De la fabrică la clientul vostru, într-un singur flux</h2>
             <p className="lead" style={{ marginTop: 14 }}>Cereți datele direct fabricii din China, în limba ei. Le extragem și le verificăm, iar voi publicați pașaportul cu cod QR, pregătit pentru registrul UE.</p>
             <div className="ctas" style={{ display: 'flex', gap: 10, marginTop: 22, flexWrap: 'wrap' }}><Link className="btn primary lg" to="/inregistrare">Începe gratuit</Link><a className="btn lg" href="#demo">Vezi un pașaport demo</a></div>
           </div>
