@@ -310,3 +310,43 @@
 .s-header.brand .s-logo svg { width: auto; height: 50px; }
 .s-footer .s-logo svg { width: auto; height: 40px; }
 .s-logo svg { width: auto; }
+
+/* ── Navbar v1 (Nuanță moale): frameless soft-tint buttons, ring only on hover ── */
+.s-header.brand.nav-v1 .s-nav { gap: 6px; align-items: center; }
+.s-header.brand.nav-v1 .s-nav > a, .s-header.brand.nav-v1 .s-navbtn { display: inline-flex; align-items: center; gap: 5px; padding: 12px 16px; border: 0; border-radius: 12px; background: rgb(255 255 255 / .1); box-shadow: none; color: #fff; font: inherit; font-size: 16px; font-weight: 500; cursor: pointer; white-space: nowrap; text-decoration: none; transition: background .15s, box-shadow .15s; }
+.s-header.brand.nav-v1 .s-nav > a:hover, .s-header.brand.nav-v1 .s-navbtn:hover, .s-header.brand.nav-v1 .s-navbtn.open { background: rgb(255 255 255 / .16); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .55); text-decoration: none; }
+.s-header.brand.nav-v1 .s-nav > a:focus-visible, .s-header.brand.nav-v1 .s-navbtn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.s-header.brand.nav-v1 .s-navbtn svg { opacity: .85; }
+.s-header.brand.nav-v1 .s-tools { gap: 8px; }
+.s-header.brand.nav-v1 .s-tools .s-navbtn { padding: 11px 12px; font-weight: 600; font-size: 15px; background: transparent; }
+.s-header.brand.nav-v1 .s-tools .s-navbtn:hover { background: rgb(255 255 255 / .12); }
+.s-iconbtn { width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: 50%; background: rgb(255 255 255 / .12); color: #fff; cursor: pointer; transition: background .15s, box-shadow .15s; }
+.s-iconbtn:hover { background: rgb(255 255 255 / .2); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .55); }
+.s-header.brand.nav-v1 .s-login { box-shadow: none; padding: 12px 12px; }
+.s-header.brand.nav-v1 .s-login:hover { background: rgb(255 255 255 / .12); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .55); }
+
+.s-drop { position: relative; }
+.s-dmenu { position: absolute; top: calc(100% + 10px); left: 0; z-index: 50; min-width: 300px; display: grid; gap: 2px; padding: 8px; background: var(--surface); color: var(--ink); border-radius: 14px; box-shadow: 0 0 0 1px var(--line), 0 20px 44px rgb(13 27 42 / .18); }
+.s-dmenu.right { left: auto; right: 0; }
+.s-dmenu.wide { grid-template-columns: repeat(2, minmax(240px, 1fr)); min-width: 540px; }
+.s-ditem { display: flex; gap: 11px; align-items: center; padding: 10px 11px; border: 0; background: none; border-radius: 10px; color: var(--ink); text-align: left; font: inherit; font-size: 14.5px; cursor: pointer; text-decoration: none; }
+.s-ditem:hover:not(:disabled) { background: var(--surface-2); text-decoration: none; }
+.s-ditem:disabled { color: var(--ink-3); cursor: not-allowed; }
+.s-ditem.on { font-weight: 600; color: var(--accent); }
+.s-ditem svg { color: var(--accent); flex: none; }
+.s-ditem b { display: block; font-weight: 600; font-size: 14.5px; }
+.s-ditem small { display: block; color: var(--ink-2); font-size: 12.5px; }
+.s-search { width: 380px; padding: 14px; gap: 6px; }
+.s-search .input { flex: 1; }
+@media (max-width: 1320px) { .s-header.brand.nav-v1 .s-nav > a, .s-header.brand.nav-v1 .s-navbtn { font-size: 15px; padding: 11px 12px; } .s-header.brand.nav-v1 .s-nav { gap: 4px; } }
+@media (max-width: 1100px) { .s-header.brand.nav-v1 .s-tools .s-drop:has(.s-navbtn) { display: none; } }
+@media (max-width: 600px) {
+  .s-header.brand .wrap { height: 70px; gap: 8px; }
+  .s-header.brand .s-logo { font-size: 20px; gap: 7px; }
+  .s-header.brand .s-logo svg { height: 38px; }
+  .s-header.brand.nav-v1 .s-tools { gap: 4px; }
+  .s-header.brand .btn.white { padding: 10px 14px; font-size: 15px; }
+  .s-iconbtn { width: 38px; height: 38px; }
+  .s-header.brand .s-menu-btn { width: 38px; height: 38px; padding: 0; }
+  .s-mobile { inset: 70px 0 auto 0; }
+}
