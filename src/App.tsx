@@ -42,6 +42,7 @@ const ButtonMockups = lazy(() => import('./site/ButtonMockups'));
 const LogoMockups = lazy(() => import('./site/LogoMockups'));
 const SimpleButtonMockups = lazy(() => import('./site/SimpleButtonMockups'));
 const FramelessButtonMockups = lazy(() => import('./site/FramelessButtonMockups'));
+const HeroMockups = lazy(() => import('./site/HeroMockups'));
 import { Empty } from './components/ui';
 
 function NotFound() {
@@ -107,6 +108,7 @@ const router = createBrowserRouter([
   { path: '/machete/logo', element: s(<LogoMockups />) },
   { path: '/machete/butoane-2', element: s(<SimpleButtonMockups />) },
   { path: '/machete/butoane-3', element: s(<FramelessButtonMockups />) },
+  { path: '/machete/hero', element: s(<HeroMockups />) },
   { path: '/home', element: <Navigate to="/" replace /> },
 ]);
 
